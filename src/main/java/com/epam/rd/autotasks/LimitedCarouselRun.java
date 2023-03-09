@@ -1,25 +1,25 @@
 package com.epam.rd.autotasks;
 
 public class LimitedCarouselRun extends CarouselRun{
-    int runs = DecrementingCarouselWithLimitedRun.actionLimit +1;
+    int amountOfRuns = DecrementingCarouselWithLimitedRun.actionLimit +1;
     @Override
     public int next() {
-        int count = 0;
-        runs--;
-        while (count < array.length && array[position %= array.length] <= 0) {
+        int stepCounter = 0;
+        amountOfRuns--;
+        while (stepCounter < array.length && array[position %= array.length] <= 0) {
             position++;
-            count++;
+            stepCounter++;
         }
-        if (count == array.length || runs <= 0) return -1;
-        return array[position++] --;
+        if (stepCounter == array.length || amountOfRuns <= 0) return -1;
+        return array[position++]--;
     }
 
     @Override
     public boolean isFinished() {
-        int sum = 0;
-        for (int val: array){
-            sum += val;
+        int sumOfArray = 0;
+        for (int number: array){
+            sumOfArray += number;
         }
-        return sum == 0 || runs <= 1;
+        return sumOfArray == 0 || amountOfRuns <= 1;
     }
 }
